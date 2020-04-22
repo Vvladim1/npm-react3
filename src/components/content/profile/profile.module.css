@@ -1,0 +1,17 @@
+.profile {
+    padding: 10px;
+    display: flex;
+  }
+  .ava img {
+    width: 30%;
+  }
+  .ava .photo {
+    width: 150px;
+    border-radius: 50%;
+  }
+  .nameBlock h3 {
+    color: yellow;
+  }
+  .nameBlock p {
+    color: yellow;
+  }
