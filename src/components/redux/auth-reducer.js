@@ -41,26 +41,26 @@ export const getAuthUserDataThunk = () => async(dispatch) => {
         // });
 }
 
-export const login = (email, password, rememberMe) => (dispatch) => {
+export const login = (email, password, rememberMe) => async(dispatch) => {
   
-  authAPI.login(email, password, rememberMe)
-         .then(response => {
+  let response = await authAPI.login(email, password, rememberMe);
+        //  .then(response => {
         if(response.data.resultCode === 0){
             dispatch(getAuthUserDataThunk('login', {email: 'Email is wrong'}));
         } else {
           let message = response.data.messages.length > 0 ? response.data.messages[0] : 'some error';
           dispatch(stopSubmit('login', {_error: message}));
         }
-        });
+        // });
 }
 
-export const logout = () => (dispatch) => {
-  authAPI.logout()
-         .then(response => {
+export const logout = () => async(dispatch) => {
+  let response = await authAPI.logout();
+        //  .then(response => {
         if(response.data.resultCode === 0){
           dispatch(setAuthUserData(null, null, null, false));
         }
-        });
+        // });
 }
 
 export default authReducer;
