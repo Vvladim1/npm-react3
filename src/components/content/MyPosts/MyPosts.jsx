@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component, PureComponent } from "react";
 import s from "./MyPosts.module.css";
 import Post from "./Post/Post";
 import { Field, reduxForm } from "redux-form";
@@ -27,13 +27,21 @@ const AddNewPostForm = (props) => {
 
 const AddNewPostFormRedux = reduxForm({form: 'addNewPostForm'})(AddNewPostForm);
 
-const MyPosts = props => {
+const MyPosts = React.memo(props => {
+
+  // shouldComponentUpdate(nextProps, nextState){
+  //   console.log('hello');
+  //   console.log(this.state);
+  //   return nextProps != this.props || nextState != this.state;
+  // }
+  // render(){
+    console.log('RENDER');
   // debugger;
-  let postsElements = props.posts.map(data => (
+  let postsElements = [...props.posts].map(data => (
     <Post message={data.message} 
           likesCounte={data.likesCounte} 
           key={data.id} />
-  ));
+  )).reverse();
 
   let newPostEl = React.createRef();
 
@@ -44,7 +52,7 @@ const MyPosts = props => {
 
 
   let onAddPost = (values) => {
-    props.addPost(values.newPostText)
+    this.props.addPost(values.newPostText)
   }
 
   return (
@@ -56,8 +64,11 @@ const MyPosts = props => {
       {postsElements}
     </div>
   );
-}
+// }
+});
 
 
 
 export default MyPosts;
+
+
