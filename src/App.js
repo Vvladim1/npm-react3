@@ -1,6 +1,5 @@
 import React from "react";
 import "./App.css";
-// import Header from "./components/header/Header";
 import Navbar from "./components/nav/Navbar";
 import ProfileContainer from "./components/content/profileContainer";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
@@ -44,7 +43,6 @@ class App extends React.Component {
           />
           <Route path="/user" render={() => ( <UsersContainer/> )}/>
           <Route path="/login" render={() => ( <Login/> )}/>
-
           <Route path="/news" component={News} />
           <Route path="/musik" component={Musik} />
           <Route path="/settings" component={Settings} />
