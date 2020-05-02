@@ -1,4 +1,4 @@
-import { createStore, combineReducers, applyMiddleware } from "redux";
+import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import dialogsReducer from "./dialogs-reducer";
 import profileReducer from './profile-reducer';
 import userReducer from "./users-reducer";
@@ -8,7 +8,7 @@ import { reducer as formReducer } from 'redux-form'
 import appReducer from "./app-reducer";
 
 
-let redusers = combineReducers({
+let reducers = combineReducers({
     
     dialogsPage: dialogsReducer,
     profilePage: profileReducer,
@@ -17,8 +17,8 @@ let redusers = combineReducers({
     form: formReducer,
     app: appReducer
 });
-let store = createStore(redusers, applyMiddleware(thunkMiddleWare));
 
-window.store = store;
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const store = createStore(reducers, /* preloadedState, */ composeEnhancers(applyMiddleware(thunkMiddleWare)));
 
 export default store;
